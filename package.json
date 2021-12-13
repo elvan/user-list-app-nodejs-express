@@ -1,0 +1,28 @@
+{
+  "name": "user-list-app-nodejs-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elvan/user-list-app-nodejs-express.git"
+  },
+  "keywords": [],
+  "author": "Elvan Hidayat <elvanhd@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elvan/user-list-app-nodejs-express/issues"
+  },
+  "homepage": "https://github.com/elvan/user-list-app-nodejs-express#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
