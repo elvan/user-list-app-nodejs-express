@@ -1,23 +1,15 @@
-const http = require('http');
+const express = require('express');
 
-const hostname = '127.0.0.1';
+const app = express();
 
-const port = 3000;
+app.get('/', (req, res) => {
+  res.send('<h1>Hello World</h1>');
+});
 
-function handleRequest(req, res) {
-  if (req.url === '/current-time') {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end(`<h1>${new Date().toISOString()}</h1>`);
-  } else if (req.url === '/') {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('<h1>Hello World</h1>');
-  }
-}
+app.get('/current-time', (req, res, next) => {
+  res.send(`<h1>${new Date().toISOString()}</h1>`);
+});
 
-const server = http.createServer(handleRequest);
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(3000, () => {
+  console.log(`Server running at port 3000`);
 });
