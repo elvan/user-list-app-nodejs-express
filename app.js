@@ -2,12 +2,27 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello World</h1>');
+app.use(express.urlencoded({ extended: true }));
+
+app.get('/', (_req, res) => {
+  res.send(`
+    <form action="/create-user" method="POST">
+      <label for="username">Your Name</label>
+      <input id="username" type="text" name="username" placeholder="Full name">
+      <button type="submit">Submit</button>
+    </form>
+  `);
 });
 
-app.get('/current-time', (req, res, next) => {
+app.get('/current-time', (_req, res) => {
   res.send(`<h1>${new Date().toISOString()}</h1>`);
+});
+
+app.post('/create-user', (req, res) => {
+  console.log(req.body);
+
+  const { username } = req.body;
+  res.send(`<h1>Hello ${username}</h1>`);
 });
 
 app.listen(3000, () => {
