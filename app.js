@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const express = require('express');
 
 const app = express();
@@ -19,9 +22,16 @@ app.get('/current-time', (_req, res) => {
 });
 
 app.post('/create-user', (req, res) => {
-  console.log(req.body);
-
   const { username } = req.body;
+
+  const filePath = path.join(__dirname, 'data', 'users.json');
+  const fileData = fs.readFileSync(filePath);
+  const existingUsers = JSON.parse(fileData.toString());
+
+  existingUsers.push(username);
+
+  fs.writeFileSync(filePath, JSON.stringify(existingUsers));
+
   res.send(`<h1>Hello ${username}</h1>`);
 });
 
