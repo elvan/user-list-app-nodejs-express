@@ -35,6 +35,23 @@ app.post('/create-user', (req, res) => {
   res.send(`<h1>Hello ${username}</h1>`);
 });
 
+app.get('/users', (_req, res) => {
+  const filePath = path.join(__dirname, 'data', 'users.json');
+  const fileData = fs.readFileSync(filePath);
+  const users = JSON.parse(fileData.toString());
+
+  let responseData = '<h1>User List</h1>';
+  responseData += '<ul>';
+
+  for (const user of users) {
+    responseData += `<li>${user}</li>`;
+  }
+
+  responseData += '</ul>';
+
+  res.send(responseData);
+});
+
 app.listen(3000, () => {
   console.log(`Server running at port 3000`);
 });
